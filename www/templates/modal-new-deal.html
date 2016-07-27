@@ -1,0 +1,54 @@
+<ion-modal-view>
+<ion-header-bar class="bar-calm">
+<h1 class="title">Create Deal</h1>
+</ion-header-bar>
+
+<ion-content class="padding">
+
+<form name="dealForm"   ng-submit="dc.createDeal(dc.selectdShop, dc.selectType, dc.dealReq, dc.expireDate)">
+
+  <div class="list">
+    <label class="item item-input item-select-center">
+      <div class="input-label">
+      <h3>Shop</h3>
+      </div>
+      <select  name = "shop"   ng-model="dc.selectdShop" required>
+       <option selected disabled value="">-- Select Shop --</option>
+       <option ng-repeat="shop in dc.shopList" value="{{shop.id}}">{{shop.name}}</option>
+     </select>
+   </label>
+   <label class="item item-input item-select-center">
+    <div class="input-label">
+      <h3>Deal Type</h3>
+    </div>
+    <select name="dealType"  ng-model="dc.selectType" required>
+     <option selected disabled value="">-- Select Deal Type --</option>
+     <option ng-repeat="type in dc.dealTypes" value="{{type.id}}">{{type.type}}</option>
+   </select>
+ </label>
+ <label class="item item-input item">
+  <div class="input-label">
+     <h3>Description</h3>
+  </div>
+  <textarea name ="dealDesc" rows="3" column ="22"   required max="140" placeholder=" character limit 140 " ng-model="dc.dealReq"></textarea>
+</label>
+<label class="item item-input item">
+  <div class="input-label">
+     <h3>Expiry Date</h3>
+  </div>
+<input name = "expDate" type="date" ng-model="dc.expireDate" min="{{dc.minDate}}" required>
+  
+</label>
+</div>
+
+<button type="submit" class="button button-block button-positive" ng-disabled="dealForm.$invalid">submit </button>
+<button type="submit" class="button button-block button-positive" ng-click= "dc.cancelCreateModal()"> cancel </button>
+<p ng-show="dealForm.shop.$error.required" class="errStyle">* Shop is required</p>
+<p ng-show="dealForm.dealType.$error.required" class="errStyle">* Deal Type is required</p>
+<p ng-show="dealForm.dealDesc.$error.required" class="errStyle">* Description is required</p>
+<p ng-show="dealForm.expDate.$error.required" class="errStyle">*  Expiry Date is required  </p>
+<p ng-show="dealForm.expDate.$error.min" class="errStyle">*  Future date required for expiry date</p>
+
+</form>
+</ion-content>
+</ion-modal-view>

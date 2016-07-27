@@ -1,0 +1,26 @@
+<ion-modal-view>
+<ion-header-bar class="bar-calm">
+<h1 class="title"> Deal Response </h1>
+</ion-header-bar>
+
+<!-- Modal content area -->
+<ion-content>
+<form name="requestForm" ng-submit="dc.saveBuddyRequest(dc.selectedDealId, dc.dealReq)"> 
+ <div class="padding">
+<div class="list">
+<label class="item item-input item-stacked-label">
+    <span class="input-label"> Response text </span>
+   <textarea name ="dealDesc" rows="3" column ="8"  ng-model="dc.dealReq" required max="140" placeholder="character limit 140 "></textarea>
+  </label>
+</div>
+ </div>
+ <div class="padding">
+  <button type="submit" class="button button-block button-positive" ng-disabled="requestForm.$invalid"> submit </button>
+  <button type="submit" class="button button-block button-positive" ng-click= "dc.cancelRequestPopUp()" > cancel </button>
+   <p ng-show="requestForm.dealDesc.$error.required" class="errStyle"> * required field </p>
+</div>
+
+</form>
+</ion-content>
+
+</ion-modal-view>

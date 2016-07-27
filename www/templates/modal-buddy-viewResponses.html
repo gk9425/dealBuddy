@@ -1,0 +1,19 @@
+<ion-modal-view>
+<!-- Modal header bar -->
+<ion-header-bar class="bar-calm">
+<h1 class="title">Deal Responses</h1>
+<button class="button button-clear button-positive ion-arrow-down-a" ng-click = "dc.cancelViewResponsePopUp()"></button>
+</ion-header-bar>
+
+<!-- Modal content area -->
+<ion-content>
+<ion-list class="list list-inset">
+<ion-item  ng-repeat="response in dc.responseList">
+<h3> <i class="ion-android-person">  {{response.uname}} </i> </h3>
+<h4>Date: {{response.responseDate | date: "fullDate"}} </h4>
+<h4>Status: {{response.responseStatus}} </h4>
+<h3>Response: {{response.comment}}</h3>
+</ion-item>
+</ion-list>
+</ion-content>
+</ion-modal-view>

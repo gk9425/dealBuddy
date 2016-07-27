@@ -1,0 +1,40 @@
+
+<ion-view view-title="Home" name="tab-home">
+<ion-header-bar class="bar-calm">
+<h1 class="title">Deal Buddy</h1>
+<button class="button button-clear button"  ng-click = "dc.signOut()"><i class="ion-log-out"> logout </i></button>
+</ion-header-bar>
+
+<ion-header-bar class="bar bar-subheader item-input-inset bar-light">
+<label class="item-input-wrapper">
+	<i class="icon ion-search placeholder-icon"></i>
+	<input type="search"  ng-model="query.name" placeholder="Search by shop name....">
+</label>
+</ion-header-bar>
+
+<ion-content class="has-subheader" >
+
+<ion-list ng-show= "dc.hasDeals">
+<ion-item class="item item-thumbnail-left" ng-repeat="deal in dc.dealsList|filter:query.name">
+<img  ng-src={{deal.logo}}>
+<div class="input-label">
+	<h3>{{deal.name}}</h3>
+	<h4>Status: {{deal.Status}}</h4>
+	<h4>Type: {{deal.type}}</h4>
+	<h4>Request Count : {{deal.dealCount}}</h4>
+	<h4>Description: {{deal.description}}</h4>
+	<h3>Expires: {{deal.expireDate| date: "fullDate"}}</h3>
+</div>
+<ion-option-button class="button-calm" ng-click="dc.showRequestPopUp(deal.id);">
+<i class="ion-android-create"> respond </i>
+</ion-option-button>
+</ion-item>
+</ion-list>
+<div class="card" ng-hide="dc.hasDeals">
+	<div class="item item-text-centre assertive">
+		No active deals available right now.
+	</div>
+</div>
+
+</ion-content>
+</ion-view>

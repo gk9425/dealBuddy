@@ -1,0 +1,15 @@
+/* Empty. Add your own CSS if you like */
+
+.changeCursor{
+cursor: pointer;
+}
+
+.subHeaderIconText {
+  font-style: normal;
+  font-weight: normal;
+}
+.errStyle{
+color:red;
+font-size:smaller;
+font-weight: bold;
+}

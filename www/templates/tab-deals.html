@@ -1,0 +1,97 @@
+<ion-view view-title="Deals" name="tab-deals">
+  <div class="bar bar-header bar-calm">
+    <h1 class="title">Deal Buddy</h1>
+    <button class="button button-clear button"  ng-click = "dc.signOut()"><i class="ion-log-out"> logout </i></button>
+  </div>
+  
+  <ion-header-bar class="bar bar-subheader">
+    <button class="button button-clear button-royal" ng-click= "dc.getUserCreatedDeals('Active')">
+      <i ng-Class = "dc.classCreated"> created </i>
+    </button>
+    <button class="button button-clear button-royal" ng-click= "dc.getUserFollowedDeals()">
+      <i ng-class="dc.classFollowing"> responded </i>
+    </button>
+    <button class="button button-clear button-royal" ng-click= "dc.showCreateModal()">
+      <i class="ion-ios-plus-empty"> new </i>
+    </button>
+  </ion-header-bar>
+  
+  <ion-content class="has-subheader">
+    
+    <div ng-show="dc.createView">
+      <button class="button button-clear button-calm" ng-click= "dc.getUserCreatedDeals('Active')">
+        <!--ion-android-star  dc.classActive-->
+        <i ng-class="dc.classActive"> active</i>
+      </button>
+      <button class="button button-clear button-calm" ng-click= "dc.getUserCreatedDeals('Finalized')">
+        <!--ion-ios-checkmark-->
+        <i ng-class="dc.classFinalized"> finalized</i> 
+        
+      </button> 
+      <button class="button button-clear button-calm" ng-click= "dc.getUserCreatedDeals('Deleted')">
+        <!-- ion-ios-trash -->
+        <i ng-class="dc.classDeleted"> deleted</i>       
+      </button>
+      <button class="button button-clear button-calm" ng-click= "dc.getUserCreatedDeals('Expired')">
+        <!--ion-ios-time-->
+        <i ng-class="dc.classExpired"> expired</i>    
+      </button>
+    </div>
+  </ion-tabs>
+  <div name ="created" ng-show="dc.createView">
+    <ion-list ng-show="dc.hasCreatedDeals">
+      <ion-item class="item item-thumbnail-left" ng-repeat="dealCreated in dc.dealsList">
+        <img  ng-src={{dealCreated.logo}}>
+        <div class="input-label">
+          <h3>{{dealCreated.name}}</h3>
+          <h4>Status: {{dealCreated.Status}}</h4>
+          <h4>Type: {{dealCreated.type}}</h4>
+          <h4>Request Count : <a  ng-click= "dc.showUpdateResponseStausPopUp(dealCreated.id, dealCreated.dealCount)" ng-class= "{ changeCursor: dealCreated.dealCount > 0}" >{{dealCreated.dealCount}}</a> </h4> 
+          
+          
+          <h4>Description: {{dealCreated.description}}</h4>
+          <h3>Expires: {{dealCreated.expireDate| date: "fullDate"}}</h3>
+        </div>
+        <ion-option-button class="button-calm" ng-click="dc.confirmDealDelete(dealCreated.id)"
+        ng-show = "dealCreated.Status == 'Active'"
+        >
+          <i class="ion-ios-trash-outline" > delete </i>
+        </ion-option-button>
+        <ion-option-button class="button-calm" ng-click="dc.confirmDealFinalize(dealCreated.id)" ng-show = "dealCreated.Status == 'Active'" >
+          <i class="ion-ios-checkmark" > finalize </i>
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+    <div class="card" ng-hide="dc.hasCreatedDeals">
+      <div class="item item-text assertive">
+        No deals available for the selected status. 
+      </div>
+    </div>
+  </div>
+  
+  
+  <div name="follow"  ng-show="dc.followView">
+    <ion-list ng-show="dc.hasFollowedDeals">
+      <ion-item class="item item-thumbnail-left" ng-repeat="dealFollow in dc.dealsList">
+        <img  ng-src={{dealFollow.logo}}>
+        <div class="input-label">
+          <h3>{{dealFollow.name}}</h3>
+          <h4>Deal Type: {{dealFollow.type}}</h4>
+          <h4>Deal Status: {{dealFollow.status}}</h4>
+          <h4>Request Count : <a ng-click= "dc.showViewResponsePopUp(dealFollow.deal)" ng-class= "{ changeCursor: dealFollow.dealCount > 0}" >{{dealFollow.dealCount}}</a></h4> 
+          <h4>Description: {{dealFollow.description}}</h4>
+          <h3>Expires: {{dealFollow.expireDate| date: "fullDate"}}</h3>
+        </div>
+      </ion-item>
+    </ion-list>
+    <div class="card" ng-hide="dc.hasFollowedDeals">
+      <div class="item item-text assertive">
+        No deals followed by user yet. 
+      </div>
+    </div>
+    
+  </ion-content>
+</ion-view>
+
+
+

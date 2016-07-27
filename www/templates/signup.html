@@ -1,0 +1,49 @@
+
+<ion-view view-title="SignUp" hide-nav-bar="true">
+<ion-header-bar class="bar-calm">
+<h1 class="title">Deal Buddy</h1>
+</ion-header-bar>
+<div class="bar bar-subheader">
+	<h2 class="title">Registration Form </h2>
+</div>
+<ion-content class="has-subheader">
+<div class="row padding removePM">
+	<div class="col">
+		<h6 style="color:red;" ng-bind="signup.error"></h6>
+	</div>
+</div>
+<div class="row responsive-sm padding removeBP login-div">
+	<div class="col">
+		<div class="list removeBP">
+			<form name="loginForm">
+				<label class="item item-input">
+					<input  name="email"  type="email" placeholder="Email  - valid email id" ng-model="signup.email" maxlength="50" required >
+				</label>
+				<label class="item item-input">
+					<input  name="firstname" type="text" placeholder="First Name " ng-model="signup.firstName"   maxlength="30" required>
+				</label>
+				<label class="item item-input">
+					<input  name="lastname" type="text" placeholder="Last Name" ng-model="signup.lastName" maxlength="30" required>
+				</label>
+				<label class="item item-input">
+					<input   name="password" type="password" placeholder="Password - min. 7 characters" ng-model="signup.password" minlength="7" maxlength="15" required>
+				</label>
+				<label class="item item-input">
+					<input   name="again" type="password" placeholder="Confirm Password" ng-model="signup.again" minlength="7" maxlength="15" required>
+				</label>
+			</form>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button class="button button-block button-positive" ng-disabled="!loginForm.$valid" ng-click="signup.signup()"> Submit </button>
+			</div>
+			<div class="col">
+				<button class="button button-block button-positive" ng-click="signup.cancelSignUp()"> Cancel </button>
+			</div>
+		</div>
+
+
+	</div>
+</div>
+</ion-content>
+</ion-view>
