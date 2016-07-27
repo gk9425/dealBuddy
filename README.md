@@ -1,6 +1,7 @@
 # dealBuddy
 used to share deals with other users to save more
 Deal Buddy 
+Uses Ionic framework, angular js and Backand as data source
 Overview:  Application used to share deals with other users to save more.  In order to app the user need to sign up using a valid email id. Backand is being used for storing and retrieving data.
 Once logged in user can do following actions:
 1.	Search on active deals shared by other users on home tab. If the user likes a particular deal he can respond to it. Swipe to left and click respond. A modal appears where user can enter description.
